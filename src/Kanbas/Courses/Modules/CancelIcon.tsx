@@ -1,5 +1,4 @@
 import { FaBan, FaCircle } from "react-icons/fa";
-import { MdOutlineUnpublished } from "react-icons/md";
 
 export default function CancelIcon() {
     return (

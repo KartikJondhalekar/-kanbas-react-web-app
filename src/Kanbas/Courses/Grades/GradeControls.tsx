@@ -17,13 +17,13 @@ export default function GradeControls() {
                 </button>
                 <ul className="dropdown-menu">
                     <li>
-                        <a id="wd-grade-export-pdf-btn" className="dropdown-item" href="#">
+                        <a id="wd-grade-export-pdf-btn" className="dropdown-item" href="#/Labs">
                             <FaRegFilePdf className="fs-4 me-1" />
                             Export as PDF
                         </a>
                     </li>
                     <li>
-                        <a id="wd-grade-export-excel-btn" className="dropdown-item" href="#">
+                        <a id="wd-grade-export-excel-btn" className="dropdown-item" href="#/Labs">
                             <SiMicrosoftexcel className="fs-4 me-1" />
                             Export as Excel
                         </a>

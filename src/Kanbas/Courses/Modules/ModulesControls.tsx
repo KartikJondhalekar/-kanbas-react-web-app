@@ -1,7 +1,6 @@
 import { FaPlus } from "react-icons/fa6";
 import GreenCheckmark from "./GreenCheckmark";
 import CancelIcon from "./CancelIcon";
-import { FaBan } from "react-icons/fa";
 
 export default function ModulesControls() {
     return (
@@ -18,25 +17,25 @@ export default function ModulesControls() {
                 </button>
                 <ul className="dropdown-menu">
                     <li>
-                        <a id="wd-publish-all-modules-and-items-btn" className="dropdown-item" href="#">
+                        <a id="wd-publish-all-modules-and-items-btn" className="dropdown-item" href="#/Labs">
                             <GreenCheckmark />
                             Publish all modules and items
                         </a>
                     </li>
                     <li>
-                        <a id="wd-publish-modules-only-button" className="dropdown-item" href="#">
+                        <a id="wd-publish-modules-only-button" className="dropdown-item" href="#/Labs">
                             <GreenCheckmark />
                             Publish modules only
                         </a>
                     </li>
                     <li>
-                        <a id="wd-unpublish-all-modules-and-items" className="dropdown-item" href="#">
+                        <a id="wd-unpublish-all-modules-and-items" className="dropdown-item" href="#/Labs">
                             <CancelIcon />
                             Unpublish all modules and items
                         </a>
                     </li>
                     <li>
-                        <a id="wd-unpublish-modules-only" className="dropdown-item" href="#">
+                        <a id="wd-unpublish-modules-only" className="dropdown-item" href="#/Labs">
                             <CancelIcon />
                             Unpublish modules only
                         </a>
