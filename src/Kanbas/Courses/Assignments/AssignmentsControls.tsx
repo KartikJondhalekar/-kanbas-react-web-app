@@ -9,7 +9,7 @@ export default function AssignmentsControls() {
                     <span className="input-group-text bg-white fs-3 rounded-0">
                         <CiSearch />
                     </span>
-                    <input type="text" className="form-control border-start-0 rounded-0" placeholder="Search..." />
+                    <input type="text" className="form-control border-start-0 rounded-0 text-start" placeholder="Search..." />
                 </div>
             </div>
             <div className="d-flex">
