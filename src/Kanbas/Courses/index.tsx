@@ -28,7 +28,7 @@ export default function Courses() {
                 <div className="d-none d-md-block">
                     <CoursesNavigation />
                 </div>
-                <div className="flex-fill container p-5">
+                <div className="flex-fill p-5 container-fluid">
                     <Routes>
                         <Route path="/" element={<Navigate to="Home" />} />
                         <Route path="Home" element={<Home />} />
