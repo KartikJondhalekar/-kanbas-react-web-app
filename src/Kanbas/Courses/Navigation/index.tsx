@@ -1,48 +1,21 @@
+import { Link } from "react-router-dom";
+import { courses } from "../../Database";
 import "./index.css";
-import { useLocation } from "react-router";
-
+import { useLocation, useParams } from "react-router";
 
 export default function CoursesNavigation() {
+    const links = ["Home", "Modules", "Piazza", "Zoom", "Assignments", "Quizzes", "Grades"];
+    const { cid } = useParams();
+    const course = courses.find((course) => course._id === cid);
     const { pathname } = useLocation();
     return (
         <div id="wd-courses-navigation" className="list-group fs-5 rounded-0">
-            <a id="wd-course-home-link" href="#/Kanbas/Courses/1234/Home"
-                className={`list-group-item border border-0 ${pathname.includes("Home") ? "active" : "text-danger"}`}>
-                Home
-            </a>
-            <a id="wd-course-modules-link" href="#/Kanbas/Courses/1234/Modules"
-                className={`list-group-item border border-0 ${pathname.includes("Modules") ? "active" : "text-danger"}`}>
-                Modules
-            </a>
-            <a id="wd-course-piazza-link" href="#/Kanbas/Courses/1234/Piazza"
-                className={`list-group-item border border-0 ${pathname.includes("Piazza") ? "active" : "text-danger"}`}>
-                Piazza
-            </a>
-            <a id="wd-course-zoom-link" href="#/Kanbas/Courses/1234/Zoom"
-                className={`list-group-item border border-0 ${pathname.includes("Zoom") ? "active" : "text-danger"}`}>
-                Zoom
-            </a>
-            <a id="wd-course-quizzes-link" href="#/Kanbas/Courses/1234/Assignments"
-                className={`list-group-item border border-0 ${pathname.includes("Assignments") ? "active" : "text-danger"}`}>
-                Assignments
-            </a>
-            <a id="wd-course-assignments-link" href="#/Kanbas/Courses/1234/Quizzes"
-                className={`list-group-item border border-0 ${pathname.includes("Quizzes") ? "active" : "text-danger"}`}>
-                Quizzes
-            </a>
-            <a id="wd-course-grades-link" href="#/Kanbas/Courses/1234/Grades"
-                className={`list-group-item border border-0 ${pathname.includes("Grades") ? "active" : "text-danger"}`}>
-                Grades
-            </a>
-            <a id="wd-course-people-link" href="#/Kanbas/Courses/1234/People"
-                className={`list-group-item border border-0 ${pathname.includes("People") ? "active" : "text-danger"}`}>
-                People
-            </a>
-            <a id="wd-course-settings-link" href="#/Kanbas/Courses/1234/Settings"
-                className={`list-group-item border border-0 ${pathname.includes("Settings") ? "active" : "text-danger"}`}>
-                Settings
-            </a>
-        </div>
+            {links.map((link) => (
+                <Link to={link} className={`list-group-item border border-0 ${pathname.includes(link) ? "active" : "text-danger"}`}>
+                    {link}
+                </Link>
+            ))}
+        </div >
     );
 }
 
