@@ -6,8 +6,6 @@ import AssignmentIcon from "./AssignmentIcon";
 import AssignmentControlButtons from "./AssignmentControlButtons";
 import { Link, useParams } from "react-router-dom";
 import * as db from "../../Database"
-import ConvertStringToDate from "../../Utilities/ConvertStringToDate";
-import { stringify } from "querystring";
 
 export default function Assignments() {
     const { cid } = useParams();

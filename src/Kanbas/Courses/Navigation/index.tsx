@@ -6,7 +6,6 @@ import { useLocation, useParams } from "react-router";
 export default function CoursesNavigation() {
     const links = ["Home", "Modules", "Piazza", "Zoom", "Assignments", "Quizzes", "Grades"];
     const { cid } = useParams();
-    const course = courses.find((course) => course._id === cid);
     const { pathname } = useLocation();
     return (
         <div id="wd-courses-navigation" className="list-group fs-5 rounded-0">

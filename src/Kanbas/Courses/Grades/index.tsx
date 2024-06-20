@@ -1,6 +1,5 @@
 import { CiFilter, CiSearch } from "react-icons/ci";
 import GradeControls from "./GradeControls";
-import { IoSendSharp } from "react-icons/io5";
 import * as db from "../../Database";
 import { useParams } from "react-router";
 
