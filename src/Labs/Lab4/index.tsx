@@ -11,7 +11,7 @@ import PassingFunctions from "./PassingFunctions";
 import ReduxExamples from "./ReduxExamples";
 import StringStateVariables from "./StringStateVariables";
 
-export default function () {
+export default function Lab4() {
     function sayHello() {
         alert("Hello");
     }
