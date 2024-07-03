@@ -1,24 +1,49 @@
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import * as db from "../../Database";
-import ConvertStringToDate from "../../Utilities/ConvertStringToDate";
-// import DateConverter from "../../Utilities/DateConverter";
+import { useNavigate, useParams } from "react-router-dom";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addAssignment, updateAssignment } from "./reducer";
 
 export default function AssignmentEditor() {
-    const { aid } = useParams();
-    const { pathname } = useLocation();
-    const assignment = db.assignments.filter((assignment: any) => assignment._id === aid).at(0);
+    const { aid, cid } = useParams();
     const navigate = useNavigate();
 
-    const handleClick = () => {
-        navigate(pathname.slice(0, pathname.length - aid!.length));
+    const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+    const [assignment, setAssignment] = useState(assignments.filter((assignment: any) => assignment._id === aid)[0]);
+    const dispatch = useDispatch();
+
+    const saveAssignment = () => {
+        console.log(assignment)
+        if (assignment !== undefined && assignment !== null) {
+            if (assignments.filter((assignment: any) => assignment._id === aid).length === 0) {
+                dispatch(addAssignment({
+                    title: (!assignment.title ? "New Assignment" : assignment.title),
+                    description: (!assignment.description ? "New Assignment Description" : assignment.description),
+                    course: cid,
+                    available: assignment.available,
+                    until: assignment.until,
+                    due: assignment.due,
+                    points: (!assignment.points ? 100 : assignment.points)
+                }));
+            }
+            else {
+                dispatch(updateAssignment(assignment));
+            }
+        }
+        navigateToAssignments();
+    };
+
+    const navigateToAssignments = () => {
+        navigate(`/Kanbas/Courses/${cid}/Assignments`);
     };
 
     return (
         <div id="wd-assignments-editor" >
             <label htmlFor="wd-name" className="form-label">Assignment Name</label>
-            <input id="wd-name" className="form-control mb-3" value={assignment?.title} />
+            <input id="wd-name" className="form-control mb-3" value={assignment?.title}
+                onChange={(e) => setAssignment({ ...assignment, title: e.target.value })} />
             <div>
-                <textarea id="wd-description" className="form-control mb-3" style={{ height: "200px" }} >
+                <textarea id="wd-description" className="form-control mb-3" style={{ height: "200px" }}
+                    onChange={(e) => setAssignment({ ...assignment, description: e.target.value })} >
                     {assignment?.description}
                 </textarea>
             </div>
@@ -29,7 +54,8 @@ export default function AssignmentEditor() {
                         Points
                     </label>
                     <div className="col-sm-8 float-end">
-                        <input id="wd-points" className="form-control" value={assignment?.points} />
+                        <input id="wd-points" className="form-control" value={assignment?.points}
+                            onChange={(e) => setAssignment({ ...assignment, points: e.target.value })} />
                     </div>
                 </div>
                 <div className="mb-3 row">
@@ -134,16 +160,19 @@ export default function AssignmentEditor() {
                         </div>
                         <div className="mb-3">
                             <label htmlFor="wd-due-date" className="form-label fw-bold fs-6">Due</label>
-                            <ConvertStringToDate dateString={assignment!.due} />
+                            <input type="date" value={assignment?.due} id="wd-available-from" className="form-control"
+                                onChange={(e) => setAssignment({ ...assignment, due: e.target.value })} />
                         </div>
                         <div className="row">
                             <div className="col-6">
                                 <label htmlFor="wd-available-from" className="form-label fw-bold fs-6">Available from</label>
-                                <ConvertStringToDate dateString={assignment!.available} />
+                                <input type="date" value={assignment?.available} id="wd-available-from" className="form-control"
+                                    onChange={(e) => setAssignment({ ...assignment, available: e.target.value })} />
                             </div>
                             <div className="col-6">
                                 <label htmlFor="wd-available-until" className="form-label fw-bold fs-6">Until</label>
-                                <ConvertStringToDate dateString={assignment!.until} />
+                                <input type="date" value={assignment?.until} id="wd-available-from" className="form-control"
+                                    onChange={(e) => setAssignment({ ...assignment, until: e.target.value })} />
                             </div>
                         </div>
 
@@ -152,8 +181,8 @@ export default function AssignmentEditor() {
             </div>
             <div>
                 <hr />
-                <button id="wd-edit-save" className="float-end btn btn-danger mx-1" onClick={handleClick}>Save</button>
-                <button id="wd-edit-cancel" className="float-end btn btn-secondary mx-1" onClick={handleClick}>Cancel</button>
+                <button id="wd-edit-save" className="float-end btn btn-danger mx-1" onClick={saveAssignment}>Save</button>
+                <button id="wd-edit-cancel" className="float-end btn btn-secondary mx-1" onClick={navigateToAssignments}>Cancel</button>
             </div>
         </div >
     );

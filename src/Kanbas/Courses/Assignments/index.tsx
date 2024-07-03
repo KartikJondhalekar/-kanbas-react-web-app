@@ -5,15 +5,19 @@ import { IoEllipsisVertical } from "react-icons/io5";
 import AssignmentIcon from "./AssignmentIcon";
 import AssignmentControlButtons from "./AssignmentControlButtons";
 import { Link, useParams } from "react-router-dom";
-import * as db from "../../Database"
+import ConvertDateToString from "../../Utilities/ConvertDateToString";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteAssignment } from "./reducer";
 
 export default function Assignments() {
     const { cid } = useParams();
-    console.log(cid);
-    const assignments = db.assignments;
+    const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+    const dispatch = useDispatch();
+
     return (
         <div id="wd-assignments" >
-            <AssignmentsControls /><br /><br /><br /><br />
+            <AssignmentsControls />
+            <br /><br /><br /><br />
             <div id="wd-assignments" className="list-group rounded-0">
                 <div id="wd-title" className="p-3 ps-2 bg-secondary ">
                     <h4 id="wd-assignments-title" className="mt-2">
@@ -43,11 +47,16 @@ export default function Assignments() {
                                             </Link>
                                         </div>
                                         <div id="wd-assignment-details">
-                                            <span className="text-danger fw-semibold">Multiple Modules</span> | <span className="fw-semibold">Not available until</span> {assignment.available} | <span className="fw-semibold">Due</span> {assignment.due} | {assignment.points}pts
+                                            <span className="text-danger fw-semibold">Multiple Modules</span> | <span className="fw-semibold">Not available until</span> <ConvertDateToString dateString={assignment.available} isDue={false} /> | <span className="fw-semibold">Due</span> <ConvertDateToString dateString={assignment.due} isDue={true} /> | {assignment.points}pts
                                         </div>
                                     </div>
                                     <div className="float-end mt-4 ms-auto">
-                                        <AssignmentControlButtons />
+                                        <AssignmentControlButtons
+                                            assignmentId={assignment._id}
+                                            deleteAssignment={(assignmentId) => {
+                                                dispatch(deleteAssignment(assignmentId))
+                                            }}
+                                        />
                                     </div>
                                 </div>
                             </li>

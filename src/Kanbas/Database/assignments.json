@@ -4,9 +4,9 @@
     "title": "Propulsion Assignment",
     "description": "Assignment 1 of course Rocket Propulsion",
     "course": "RS101",
-    "available": "May 6, 2024 12:00am",
-    "until": "May 13, 2024 11:59pm",
-    "due": "May 13, 2024 11:59pm",
+    "available": "2024-05-06",
+    "until": "2024-05-13",
+    "due": "2024-05-13",
     "points": 100
   },
   {
@@ -14,9 +14,9 @@
     "title": "Combustion Analysis",
     "description": "Assignment 2 of course Rocket Propulsion",
     "course": "RS101",
-    "available": "May 13, 2024 12:00am",
-    "until": "May 20, 2024 11:59pm",
-    "due": "May 20, 2024 11:59pm",
+    "available": "2024-05-13",
+    "until": "2024-05-20",
+    "due": "2024-05-20",
     "points": 100
   },
   {
@@ -24,9 +24,9 @@
     "title": "Nozzle Design Project",
     "description": "Assignment 3 of course Rocket Propulsion",
     "course": "RS101",
-    "available": "May 20, 2024 12:00am",
-    "until": "May 27, 2024 11:59pm",
-    "due": "May 27, 2024 11:59pm",
+    "available": "2024-05-20",
+    "until": "2024-05-27",
+    "due": "2024-05-27",
     "points": 100
   },
   {
@@ -34,9 +34,9 @@
     "title": "Aerodynamics Quiz",
     "description": "Assignment 1 of course Aerodynamics",
     "course": "RS102",
-    "available": "May 27, 2024 12:00am",
-    "until": "June 3, 2024 11:59pm",
-    "due": "June 3, 2024 11:59pm",
+    "available": "2024-05-27",
+    "until": "2024-06-03",
+    "due": "2024-06-03",
     "points": 100
   },
   {
@@ -44,9 +44,9 @@
     "title": "Flow Analysis",
     "description": "Assignment 2 of course Aerodynamics",
     "course": "RS102",
-    "available": "June 3, 2024 12:00am",
-    "until": "June 10, 2024 11:59pm",
-    "due": "June 10, 2024 11:59pm",
+    "available": "2024-06-03",
+    "until": "2024-06-10",
+    "due": "2024-06-10",
     "points": 100
   },
   {
@@ -54,9 +54,9 @@
     "title": "Heating Analysis",
     "description": "Assignment 3 of course Aerodynamics",
     "course": "RS102",
-    "available": "June 10, 2024 12:00am",
-    "until": "June 17, 2024 11:59pm",
-    "due": "June 17, 2024 11:59pm",
+    "available": "2024-06-10",
+    "until": "2024-06-17",
+    "due": "2024-06-17",
     "points": 100
   },
   {
@@ -64,9 +64,9 @@
     "title": "Structural Design Task",
     "description": "Assignment 1 of course Spacecraft Design",
     "course": "RS103",
-    "available": "June 17, 2024 12:00am",
-    "until": "June 24, 2024 11:59pm",
-    "due": "June 24, 2024 11:59pm",
+    "available": "2024-06-17",
+    "until": "2024-06-24",
+    "due": "2024-06-24",
     "points": 100
   },
   {
@@ -74,9 +74,9 @@
     "title": "Orbital Calculations",
     "description": "Assignment 2 of course Spacecraft Design",
     "course": "RS103",
-    "available": "June 24, 2024 12:00am",
-    "until": "July 1, 2024 11:59pm",
-    "due": "July 1, 2024 11:59pm",
+    "available": "2024-06-24",
+    "until": "2024-07-01",
+    "due": "2024-07-01",
     "points": 100
   },
   {
@@ -84,9 +84,9 @@
     "title": "Systems Engineering Exam",
     "description": "Assignment 3 of course Spacecraft Design",
     "course": "RS103",
-    "available": "July 1, 2024 12:00am",
-    "until": "July 7, 2024 11:59pm",
-    "due": "July 7, 2024 11:59pm",
+    "available": "2024-07-01",
+    "until": "2024-07-07",
+    "due": "2024-07-07",
     "points": 100
   }
 ]
