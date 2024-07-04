@@ -7,8 +7,9 @@ export default function AssignmentDeleteModal(
         deleteAssignment: (assignmentId: string) => void
     }
 ) {
+    console.log(assignmentId)
     return (
-        <div id="wd-delete-assignment-dialog" className="modal fade" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div id={`wd-delete-assignment-dialog-${assignmentId}`} className="modal fade" data-bs-backdrop="static" data-bs-keyboard="false">
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">

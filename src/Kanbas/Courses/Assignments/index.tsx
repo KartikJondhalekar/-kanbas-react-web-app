@@ -36,7 +36,7 @@ export default function Assignments() {
                 <ul id="wd-assignment-list" className="list-group rounded-0 border-start border-3 border-success">
                     {assignments.filter((assignment: any) => assignment.course === cid)
                         .map((assignment: any) => (
-                            <li id="wd-assignment-list-item" className="list-group-item p-3 ps-1 ">
+                            <li key={assignment._id} id="wd-assignment-list-item" className="list-group-item p-3 ps-1 ">
                                 <div className="d-flex align-items-start">
                                     <span className="mt-2">
                                         <AssignmentIcon />
@@ -54,6 +54,7 @@ export default function Assignments() {
                                     <div className="float-end mt-4 ms-auto">
                                         <AssignmentControlButtons
                                             assignmentId={assignment._id}
+                                            assignmentTitle={assignment.title}
                                             deleteAssignment={(assignmentId) => {
                                                 dispatch(deleteAssignment(assignmentId))
                                             }}

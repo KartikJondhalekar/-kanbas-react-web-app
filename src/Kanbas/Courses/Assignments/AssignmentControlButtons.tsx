@@ -4,17 +4,18 @@ import { FaTrash } from "react-icons/fa";
 import AssignmentDeleteModal from "./AssignmentDeleteModal";
 
 export default function AssignmentControlButtons(
-  { assignmentId, deleteAssignment }: {
+  { assignmentId, assignmentTitle, deleteAssignment }: {
     assignmentId: string,
+    assignmentTitle: string,
     deleteAssignment: (assignmentId: string) => void
-  }
-) {
+  }) {
+  console.log(assignmentId)
   return (
     <div className="float-end d-flex align-items-center">
-      <FaTrash className="text-danger fs-5 mx-2" data-bs-toggle="modal" data-bs-target="#wd-delete-assignment-dialog" />
+      <FaTrash className="text-danger fs-5 mx-2" data-bs-toggle="modal" data-bs-target={`#wd-delete-assignment-dialog-${assignmentId}`} />
       <GreenCheckmark />
       <IoEllipsisVertical className="fs-3" />
-      <AssignmentDeleteModal dialogTitle={`Delete confirmation`} assignmentId={assignmentId} deleteAssignment={deleteAssignment} />
+      <AssignmentDeleteModal dialogTitle={`Delete assignment: ${assignmentTitle}`} assignmentId={assignmentId} deleteAssignment={deleteAssignment} />
     </div>
   );
 }
