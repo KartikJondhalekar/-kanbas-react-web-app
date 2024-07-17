@@ -7,18 +7,43 @@ import AssignmentControlButtons from "./AssignmentControlButtons";
 import { Link, useParams } from "react-router-dom";
 import ConvertDateToString from "../../Utilities/ConvertDateToString";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteAssignment } from "./reducer";
+import { deleteAssignment, setAssignments } from "./reducer";
+import * as client from "./client";
+import { useEffect, useState } from "react";
 
 export default function Assignments() {
     const { cid } = useParams();
-
+    const [assignmentError, setAssignmentError] = useState(null);
     const { assignments } = useSelector((state: any) => state.assignmentsReducer);
     const dispatch = useDispatch();
+
+    const removeAssignment = async (assignmentId: string) => {
+        try {
+            const response = await client.deleteAssignment(assignmentId);
+            dispatch(deleteAssignment(assignmentId));
+        }
+        catch (error: any) {
+            console.log(error);
+            setAssignmentError(error.response.data.message);
+        }
+    }
+
+    const fetchAssignments = async () => {
+        const assignments = await client.findAssignmentsForCourse(cid as string);
+        dispatch(setAssignments(assignments));
+    }
+
+    useEffect(() => {
+        fetchAssignments();
+    }, []);
 
     return (
         <div id="wd-assignments" >
             <AssignmentsControls />
             <br /><br /><br /><br />
+            {assignmentError &&
+                <div id="wd-error-message" className="alert alert-danger mb-2 mt-2">{assignmentError}</div>
+            }
             <div id="wd-assignments" className="list-group rounded-0">
                 <div id="wd-title" className="p-3 ps-2 bg-secondary ">
                     <h4 id="wd-assignments-title" className="mt-2">
@@ -56,7 +81,7 @@ export default function Assignments() {
                                             assignmentId={assignment._id}
                                             assignmentTitle={assignment.title}
                                             deleteAssignment={(assignmentId) => {
-                                                dispatch(deleteAssignment(assignmentId))
+                                                removeAssignment(assignmentId);
                                             }}
                                         />
                                     </div>

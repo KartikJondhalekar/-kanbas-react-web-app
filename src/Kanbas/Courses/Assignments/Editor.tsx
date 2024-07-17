@@ -1,21 +1,39 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addAssignment, updateAssignment } from "./reducer";
+import * as client from "./client";
 
 export default function AssignmentEditor() {
     const { aid, cid } = useParams();
     const navigate = useNavigate();
 
+    const [updateError, setUpdateError] = useState(null);
     const { assignments } = useSelector((state: any) => state.assignmentsReducer);
-    const [assignment, setAssignment] = useState(assignments.filter((assignment: any) => assignment._id === aid)[0]);
+    const [assignment, setAssignment] = useState(assignments.find((assignment: any) => assignment._id === aid));
     const dispatch = useDispatch();
+
+    const saveAssignmentUpdates = async (assignment: any) => {
+        try {
+            const response = await client.updateAssignment(assignment);
+            dispatch(updateAssignment(assignment));
+        }
+        catch (error: any) {
+            console.log(error);
+            setUpdateError(error.response.data.message);
+        }
+    };
+
+    const createNewAssignment = async (assignment: any) => {
+        const newAssignment = await client.createAssignment(cid as string, assignment);
+        dispatch(addAssignment(newAssignment));
+    };
 
     const saveAssignment = () => {
         console.log(assignment)
         if (assignment !== undefined && assignment !== null) {
             if (assignments.filter((assignment: any) => assignment._id === aid).length === 0) {
-                dispatch(addAssignment({
+                createNewAssignment({
                     title: (!assignment.title ? "New Assignment" : assignment.title),
                     description: (!assignment.description ? "New Assignment Description" : assignment.description),
                     course: cid,
@@ -23,10 +41,10 @@ export default function AssignmentEditor() {
                     until: assignment.until,
                     due: assignment.due,
                     points: (!assignment.points ? 100 : assignment.points)
-                }));
+                });
             }
             else {
-                dispatch(updateAssignment(assignment));
+                saveAssignmentUpdates(assignment);
             }
         }
         navigateToAssignments();
@@ -38,6 +56,9 @@ export default function AssignmentEditor() {
 
     return (
         <div id="wd-assignments-editor" >
+            {updateError &&
+                <div id="wd-error-message" className="alert alert-danger mb-2 mt-2">{updateError}</div>
+            }
             <label htmlFor="wd-name" className="form-label">Assignment Name</label>
             <input id="wd-name" className="form-control mb-3" value={assignment?.title}
                 onChange={(e) => setAssignment({ ...assignment, title: e.target.value })} />
@@ -175,7 +196,6 @@ export default function AssignmentEditor() {
                                     onChange={(e) => setAssignment({ ...assignment, until: e.target.value })} />
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -184,7 +204,7 @@ export default function AssignmentEditor() {
                 <button id="wd-edit-save" className="float-end btn btn-danger mx-1" onClick={saveAssignment}>Save</button>
                 <button id="wd-edit-cancel" className="float-end btn btn-secondary mx-1" onClick={navigateToAssignments}>Cancel</button>
             </div>
-        </div >
+        </div>
     );
 }
 
