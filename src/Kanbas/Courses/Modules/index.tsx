@@ -42,7 +42,7 @@ export default function Modules() {
     };
     useEffect(() => {
         fetchModules();
-    });
+    }, []);
 
     return (
         <div id="wd-modules">
