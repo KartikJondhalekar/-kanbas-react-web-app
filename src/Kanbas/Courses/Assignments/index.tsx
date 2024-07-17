@@ -19,11 +19,10 @@ export default function Assignments() {
 
     const removeAssignment = async (assignmentId: string) => {
         try {
-            const response = await client.deleteAssignment(assignmentId);
+            await client.deleteAssignment(assignmentId);
             dispatch(deleteAssignment(assignmentId));
         }
         catch (error: any) {
-            console.log(error);
             setAssignmentError(error.response.data.message);
         }
     }
@@ -35,7 +34,7 @@ export default function Assignments() {
 
     useEffect(() => {
         fetchAssignments();
-    }, []);
+    });
 
     return (
         <div id="wd-assignments" >

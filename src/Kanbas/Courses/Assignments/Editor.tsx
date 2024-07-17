@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addAssignment, updateAssignment } from "./reducer";
 import * as client from "./client";
@@ -15,11 +15,10 @@ export default function AssignmentEditor() {
 
     const saveAssignmentUpdates = async (assignment: any) => {
         try {
-            const response = await client.updateAssignment(assignment);
+            await client.updateAssignment(assignment);
             dispatch(updateAssignment(assignment));
         }
         catch (error: any) {
-            console.log(error);
             setUpdateError(error.response.data.message);
         }
     };
