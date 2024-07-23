@@ -6,6 +6,7 @@ import Assignments from "./Assignments";
 import AssignmentEditor from "./Assignments/Editor";
 import { RxHamburgerMenu } from "react-icons/rx";
 import Grades from "./Grades";
+import PeopleTable from "./People/Tables";
 
 export default function Courses({ courses }: { courses: any[]; }) {
     const { pathname } = useLocation();
@@ -36,8 +37,8 @@ export default function Courses({ courses }: { courses: any[]; }) {
                         <Route path="Assignments/:aid" element={<AssignmentEditor />} />
                         <Route path="Quizzes" element={<h1>Quizzes</h1>} />
                         <Route path="Grades" element={<Grades />} />
-                        <Route path="People" element={<h1>People</h1>} />
-                        <Route path="Settings" element={<h1>Settings</h1>} />
+                        <Route path="People" element={<PeopleTable />} />
+                        <Route path="People/:uid" element={<PeopleTable />} />
                     </Routes>
                 </div>
             </div>

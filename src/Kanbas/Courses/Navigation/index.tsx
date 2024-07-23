@@ -3,7 +3,7 @@ import "./index.css";
 import { useLocation } from "react-router";
 
 export default function CoursesNavigation() {
-    const links = ["Home", "Modules", "Piazza", "Zoom", "Assignments", "Quizzes", "Grades"];
+    const links = ["Home", "Modules", "Piazza", "Zoom", "Assignments", "Quizzes", "Grades", "People"];
     const { pathname } = useLocation();
     return (
         <div id="wd-courses-navigation" className="list-group fs-5 rounded-0">
