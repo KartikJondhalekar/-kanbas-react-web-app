@@ -35,16 +35,15 @@ export default function PeopleDetails(
         navigate(`/Kanbas/Courses/${cid}/People`);
     };
 
-    const fetchUser = async () => {
-        if (!uid) return;
-        const user = await client.findUserById(uid);
-        setUser(user);
-        setName(user.firstName + " " + user.lastName);
-        setRole(user.role);
-        setEmail(user.email);
-    };
-
     useEffect(() => {
+        const fetchUser = async () => {
+            if (!uid) return;
+            const user = await client.findUserById(uid);
+            setUser(user);
+            setName(user.firstName + " " + user.lastName);
+            setRole(user.role);
+            setEmail(user.email);
+        };
         if (uid) fetchUser();
     }, [uid]);
 
