@@ -62,7 +62,7 @@ export default function AssignmentEditor() {
             setAssignment(newAssignment);
         }
     },
-        [pathname, newAssignment]
+        [pathname]
     );
     return (
         <div id="wd-assignments-editor" >
