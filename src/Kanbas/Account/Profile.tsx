@@ -33,7 +33,7 @@ export default function Profile() {
             <h1 className="text-danger">Profile</h1>
             {profile && (
                 <div className="row justify-content-center align-items-center" style={{ height: 100 }}>
-                    <div className="col-md-4">
+                    <div className="col-md-6">
                         <input id="wd-username" className="form-control mb-2" value={profile.username} placeholder="Username"
                             onChange={(e) => setProfile({ ...profile, username: e.target.value })} />
                         <input id="wd-password" className="form-control mb-2" value={profile.password} placeholder="Password"

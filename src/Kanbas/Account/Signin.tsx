@@ -24,7 +24,7 @@ export default function Signin() {
     return (
         <div className="container">
             <div className="row justify-content-center align-items-center" style={{ height: 100 }}>
-                <div className="col-md-4">
+                <div className="col-md-6">
                     <div id="wd-signin-screen" className="text-center">
                         <h1 className="text-danger">Sign in</h1>
                         {error && <div className="wd-error alert alert-danger">{error}</div>}

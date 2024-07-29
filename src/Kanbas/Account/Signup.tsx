@@ -24,7 +24,7 @@ export default function Signup() {
     return (
         <div className="container">
             <div className="row justify-content-center align-items-center" style={{ height: 100 }}>
-                <div className="col-md-4">
+                <div className="col-md-6">
                     <div id="wd-signup-screen" className="text-center">
                         <h1 className="text-danger">Sign up</h1>
                         {error && <div className="alert alert-danger">{error}</div>}
