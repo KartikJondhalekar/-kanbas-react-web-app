@@ -1,11 +1,12 @@
-import { useNavigate, useParams } from "react-router-dom";
-import { useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addAssignment, updateAssignment } from "./reducer";
 import * as client from "./client";
 
 export default function AssignmentEditor() {
     const { aid, cid } = useParams();
+    const { pathname } = useLocation();
     const navigate = useNavigate();
 
     const [updateError, setUpdateError] = useState(null);
@@ -28,19 +29,22 @@ export default function AssignmentEditor() {
         dispatch(addAssignment(newAssignment));
     };
 
+    const newAssignment = {
+        number: "A",
+        title: "New Assignment",
+        description: "New Assignment Description",
+        course: cid,
+        available: new Date().toLocaleDateString(),
+        until: new Date().toLocaleDateString(),
+        due: new Date().toLocaleDateString(),
+        points: 100
+    };
+
     const saveAssignment = () => {
         console.log(assignment)
         if (assignment !== undefined && assignment !== null) {
             if (assignments.filter((assignment: any) => assignment._id === aid).length === 0) {
-                createNewAssignment({
-                    title: (!assignment.title ? "New Assignment" : assignment.title),
-                    description: (!assignment.description ? "New Assignment Description" : assignment.description),
-                    course: cid,
-                    available: assignment.available,
-                    until: assignment.until,
-                    due: assignment.due,
-                    points: (!assignment.points ? 100 : assignment.points)
-                });
+                createNewAssignment({ ...newAssignment, number: assignment.number + (assignments.length + 1) });
             }
             else {
                 saveAssignmentUpdates(assignment);
@@ -53,6 +57,13 @@ export default function AssignmentEditor() {
         navigate(`/Kanbas/Courses/${cid}/Assignments`);
     };
 
+    useEffect(() => {
+        if (pathname.includes("NewAssignment")) {
+            setAssignment(newAssignment);
+        }
+    },
+        []
+    );
     return (
         <div id="wd-assignments-editor" >
             {updateError &&
@@ -180,18 +191,18 @@ export default function AssignmentEditor() {
                         </div>
                         <div className="mb-3">
                             <label htmlFor="wd-due-date" className="form-label fw-bold fs-6">Due</label>
-                            <input type="date" value={assignment?.due} id="wd-available-from" className="form-control"
+                            <input type="date" value={assignment?.due?.split("T")[0]} id="wd-available-from" className="form-control"
                                 onChange={(e) => setAssignment({ ...assignment, due: e.target.value })} />
                         </div>
                         <div className="row">
                             <div className="col-6">
                                 <label htmlFor="wd-available-from" className="form-label fw-bold fs-6">Available from</label>
-                                <input type="date" value={assignment?.available} id="wd-available-from" className="form-control"
+                                <input type="date" value={assignment?.available?.split("T")[0]} id="wd-available-from" className="form-control"
                                     onChange={(e) => setAssignment({ ...assignment, available: e.target.value })} />
                             </div>
                             <div className="col-6">
                                 <label htmlFor="wd-available-until" className="form-label fw-bold fs-6">Until</label>
-                                <input type="date" value={assignment?.until} id="wd-available-from" className="form-control"
+                                <input type="date" value={assignment?.until?.split("T")[0]} id="wd-available-from" className="form-control"
                                     onChange={(e) => setAssignment({ ...assignment, until: e.target.value })} />
                             </div>
                         </div>

@@ -1,6 +1,6 @@
 [
   {
-    "_id": "A101",
+    "number": "A101",
     "title": "Propulsion Assignment",
     "description": "Assignment 1 of course Rocket Propulsion",
     "course": "RS101",
@@ -10,7 +10,7 @@
     "points": 100
   },
   {
-    "_id": "A102",
+    "number": "A102",
     "title": "Combustion Analysis",
     "description": "Assignment 2 of course Rocket Propulsion",
     "course": "RS101",
@@ -20,7 +20,7 @@
     "points": 100
   },
   {
-    "_id": "A103",
+    "number": "A103",
     "title": "Nozzle Design Project",
     "description": "Assignment 3 of course Rocket Propulsion",
     "course": "RS101",
@@ -30,7 +30,7 @@
     "points": 100
   },
   {
-    "_id": "A201",
+    "number": "A201",
     "title": "Aerodynamics Quiz",
     "description": "Assignment 1 of course Aerodynamics",
     "course": "RS102",
@@ -40,7 +40,7 @@
     "points": 100
   },
   {
-    "_id": "A202",
+    "number": "A202",
     "title": "Flow Analysis",
     "description": "Assignment 2 of course Aerodynamics",
     "course": "RS102",
@@ -50,7 +50,7 @@
     "points": 100
   },
   {
-    "_id": "A203",
+    "number": "A203",
     "title": "Heating Analysis",
     "description": "Assignment 3 of course Aerodynamics",
     "course": "RS102",
@@ -60,7 +60,7 @@
     "points": 100
   },
   {
-    "_id": "A301",
+    "number": "A301",
     "title": "Structural Design Task",
     "description": "Assignment 1 of course Spacecraft Design",
     "course": "RS103",
@@ -70,7 +70,7 @@
     "points": 100
   },
   {
-    "_id": "A302",
+    "number": "A302",
     "title": "Orbital Calculations",
     "description": "Assignment 2 of course Spacecraft Design",
     "course": "RS103",
@@ -80,7 +80,7 @@
     "points": 100
   },
   {
-    "_id": "A303",
+    "number": "A303",
     "title": "Systems Engineering Exam",
     "description": "Assignment 3 of course Spacecraft Design",
     "course": "RS103",

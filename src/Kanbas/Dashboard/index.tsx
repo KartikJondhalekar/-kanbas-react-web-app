@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 
-
 export default function Dashboard(
     {
         courses, course, setCourse, addNewCourse,
@@ -31,7 +30,7 @@ export default function Dashboard(
                 <div className="row row-cols-1 row-cols-md-5 g-4">
                     {courses.map((course) => (
                         <div className="wd-dashboard-course col" style={{ width: "300px" }}>
-                            <Link to={`/Kanbas/Courses/${course._id}/Home`} className="text-decoration-none" >
+                            <Link to={`/Kanbas/Courses/${course.number}/Home`} className="text-decoration-none" >
                                 <div className="card rounded-3 overflow-hidden h-100 d-flex flex-column">
                                     <img src={`/images/${course.image}`} height="160" alt={`${course.name}`} />
                                     <div className="card-body p-3">
@@ -44,7 +43,7 @@ export default function Dashboard(
                                         </p>
                                     </div>
                                     <div className="card-footer bg-white p-3 border-0">
-                                        <Link to={`/Kanbas/Courses/${course._id}/Home`} className="btn btn-primary">Go</Link>
+                                        <Link to={`/Kanbas/Courses/${course.number}/Home`} className="btn btn-primary">Go</Link>
                                         <button onClick={(event) => {
                                             event.preventDefault();
                                             deleteCourse(course._id);

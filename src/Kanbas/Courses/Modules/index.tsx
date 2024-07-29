@@ -10,13 +10,17 @@ import LessonControlButtons from "./LessonControlButtons";
 
 export default function Modules() {
     const { cid } = useParams();
-    const [moduleName, setModuleName] = useState("");
+    const [newModule, setNewModule] = useState<any>({ name: "", description: "" });
     const { modules } = useSelector((state: any) => state.modulesReducer);
     const [moduleError, setModuleError] = useState(null);
     const dispatch = useDispatch();
 
     const saveModule = async (module: any) => {
         await client.updateModule(module);
+        dispatch(updateModule(module));
+    };
+
+    const updateModuleTitle = (module: any) => {
         dispatch(updateModule(module));
     };
 
@@ -47,11 +51,11 @@ export default function Modules() {
     return (
         <div id="wd-modules">
             <ModulesControls
-                setModuleName={setModuleName}
-                moduleName={moduleName}
+                setNewModule={setNewModule}
+                newModule={newModule}
                 addModule={() => {
-                    createModule({ name: moduleName, course: cid });
-                    setModuleName("");
+                    createModule({ ...newModule, course: cid });
+                    setNewModule({ ...newModule, name: "", description: "" });
                 }}
             />
             < br /><br /><br /><br /><br /><br />
@@ -68,7 +72,7 @@ export default function Modules() {
                                 {!module.editing && module.name}
                                 {module.editing && (
                                     <input className="form-control w-50 d-inline-block"
-                                        onChange={(e) => saveModule({ ...module, name: e.target.value })
+                                        onChange={(e) => updateModuleTitle({ ...module, name: e.target.value })
                                         }
                                         onKeyDown={(e) => {
                                             if (e.key === "Enter") {

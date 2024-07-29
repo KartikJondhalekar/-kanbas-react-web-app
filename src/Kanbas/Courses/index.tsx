@@ -11,7 +11,9 @@ import PeopleTable from "./People/Tables";
 export default function Courses({ courses }: { courses: any[]; }) {
     const { pathname } = useLocation();
     const { cid } = useParams();
-    const course = courses.find((course) => course._id === cid);
+
+    const course = courses.find((course) => course.number === cid);
+
     return (
         <div id="wd-courses">
             <div className="ps-1 d-flex">

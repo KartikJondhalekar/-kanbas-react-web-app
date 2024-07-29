@@ -61,7 +61,7 @@ export default function Grades() {
                                     <td className="text-danger">{user?.firstName} {user?.lastName}</td>
                                     {assignments.map((assignment) => {
                                         const grade = grades.find((grade) =>
-                                            grade.student === enrollment.user && grade.assignment === assignment._id);
+                                            grade.student === enrollment.user && grade.assignment === assignment.number);
                                         return (
                                             <td className="align-middle text-center">{grade?.grade}</td>
                                         );

@@ -12,17 +12,13 @@ export default function PeopleDetails(
     const { uid, cid } = useParams();
     const [user, setUser] = useState<any>({});
     const [name, setName] = useState("");
-    const [role, setRole] = useState("");
-    const [email, setEmail] = useState("");
     const [editing, setEditing] = useState(false);
     const [firstName, lastName] = name.split(" ");
 
     const saveUser = async () => {
-        const updatedUser = { ...user, firstName, lastName, role, email };
+        const updatedUser = { ...user, firstName, lastName };
         await client.updateUser(updatedUser);
         setUser(updatedUser);
-        setRole(updatedUser.role);
-        setEmail(updatedUser.email);
         setName(`${firstName} ${lastName}`);
         setEditing(false);
         fetchUsers();
@@ -41,8 +37,6 @@ export default function PeopleDetails(
             const user = await client.findUserById(uid);
             setUser(user);
             setName(user.firstName + " " + user.lastName);
-            setRole(user.role);
-            setEmail(user.email);
         };
         if (uid) fetchUser();
     }, [uid]);
@@ -81,8 +75,8 @@ export default function PeopleDetails(
                     (<><span className="wd-roles float-start">{user.role}</span><br /></>
                     )}
                 {editing &&
-                    (<><select value={role} className="form-select w-50 wd-select-role float-start"
-                        onChange={(e) => setRole(e.target.value)}>
+                    (<><select value={user.role} className="form-select w-50 wd-select-role float-start"
+                        onChange={(e) => setUser({ ...user, role: e.target.value })}>
                         <option value="STUDENT">Student</option>
                         <option value="TA">Assistant</option>
                         <option value="FACULTY">Faculty</option>
@@ -97,7 +91,7 @@ export default function PeopleDetails(
                     <><input className="form-control w-50 wd-edit-email float-start"
                         type="email"
                         defaultValue={user.email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => setUser({ ...user, email: e.target.value })}
                         onKeyDown={(e) => {
                             if (e.key === "Enter") { saveUser(); }
                         }}

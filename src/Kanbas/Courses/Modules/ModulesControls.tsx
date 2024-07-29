@@ -4,8 +4,8 @@ import CancelIcon from "./CancelIcon";
 import ModuleEditor from "./ModuleEditor";
 
 export default function ModulesControls(
-    { moduleName, setModuleName, addModule }:
-        { moduleName: string; setModuleName: (title: string) => void; addModule: () => void; }) {
+    { newModule, setNewModule, addModule }:
+        { newModule: any; setNewModule: ({ }) => void; addModule: () => void; }) {
     return (
         <div id="wd-modules-controls" className="text-nowrap mb-2">
             <button id="wd-add-module-btn" className="btn btn-lg btn-danger m-1 float-end"
@@ -52,8 +52,8 @@ export default function ModulesControls(
             <button id="wd-collapse-all-btn" className="btn btn-lg m-1 float-end btn-secondary" >
                 Collapse All
             </button>
-            <ModuleEditor dialogTitle="Add Module" moduleName={moduleName}
-                setModuleName={setModuleName} addModule={addModule} />
+            <ModuleEditor dialogTitle="Add Module" newModule={newModule}
+                setNewModule={setNewModule} addModule={addModule} />
         </div>
     );
 }
