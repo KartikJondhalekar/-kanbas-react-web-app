@@ -5,7 +5,7 @@ import ModuleEditor from "./ModuleEditor";
 
 export default function ModulesControls(
     { newModule, setNewModule, addModule }:
-        { newModule: any; setNewModule: ({ }) => void; addModule: () => void; }) {
+        { newModule: any; setNewModule: ({ ...newModule }) => void; addModule: () => void; }) {
     return (
         <div id="wd-modules-controls" className="text-nowrap mb-2">
             <button id="wd-add-module-btn" className="btn btn-lg btn-danger m-1 float-end"

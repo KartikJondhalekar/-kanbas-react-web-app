@@ -15,16 +15,18 @@ export default function Profile() {
         navigate("/Kanbas/Account/Signin");
     };
 
-    const fetchProfile = async () => {
-        try {
-            const account = await client.profile();
-            setProfile({ ...account, dob: account?.dob?.split("T")[0] });
-        }
-        catch (err: any) {
-            navigate("/Kanbas/Account/Signin");
-        }
-    };
-    useEffect(() => { fetchProfile(); }, []);
+    useEffect(() => {
+        const fetchProfile = async () => {
+            try {
+                const account = await client.profile();
+                setProfile({ ...account, dob: account?.dob?.split("T")[0] });
+            }
+            catch (err: any) {
+                navigate("/Kanbas/Account/Signin");
+            }
+        };
+        fetchProfile();
+    }, []);
 
     return (
         <div id="wd-profile-screen" className="container text-center">

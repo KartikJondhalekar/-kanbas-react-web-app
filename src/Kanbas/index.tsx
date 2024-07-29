@@ -5,7 +5,7 @@ import Courses from "./Courses";
 import "./style.css";
 import * as client from "./Courses/client";
 import store from "./store";
-import { Provider, useSelector } from "react-redux";
+import { Provider } from "react-redux";
 
 import { useEffect, useState } from "react";
 import Account from "./Account";
