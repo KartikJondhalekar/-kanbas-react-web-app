@@ -26,7 +26,7 @@ export default function Profile() {
             }
         };
         fetchProfile();
-    }, []);
+    }, [navigate]);
 
     return (
         <div id="wd-profile-screen" className="container text-center">

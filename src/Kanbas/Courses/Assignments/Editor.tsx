@@ -1,5 +1,5 @@
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addAssignment, updateAssignment } from "./reducer";
 import * as client from "./client";
@@ -29,7 +29,7 @@ export default function AssignmentEditor() {
         dispatch(addAssignment(newAssignment));
     };
 
-    const newAssignment = {
+    const newAssignment = useMemo(() => ({
         number: "A",
         title: "New Assignment",
         description: "New Assignment Description",
@@ -38,7 +38,7 @@ export default function AssignmentEditor() {
         until: new Date().toLocaleDateString(),
         due: new Date().toLocaleDateString(),
         points: 100
-    };
+    }), [cid]);
 
     const saveAssignment = () => {
         console.log(assignment)
@@ -62,7 +62,7 @@ export default function AssignmentEditor() {
             setAssignment(newAssignment);
         }
     },
-        [pathname]
+        [pathname, newAssignment]
     );
     return (
         <div id="wd-assignments-editor" >
