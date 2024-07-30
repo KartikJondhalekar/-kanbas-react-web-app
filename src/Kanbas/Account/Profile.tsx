@@ -22,6 +22,7 @@ export default function Profile() {
                 setProfile({ ...account, dob: account?.dob?.split("T")[0] });
             }
             catch (err: any) {
+                console.log(err.response.data.message);
                 navigate("/Kanbas/Account/Signin");
             }
         };
