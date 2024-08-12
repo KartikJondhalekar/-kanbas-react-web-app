@@ -99,14 +99,9 @@ export default function Quizzes() {
             const scores = await client.getUserQuizScores(currentUser._id);
             setUserScores(scores);
             dispatch(setQuizzes(quizzes));
-            console.log(scores, userScores);
         };
         fetchQuizzes();
-    }, [cid, dispatch, currentUser._id, userScores]);
-
-    useEffect(() => {
-        console.log('Updated userScores:', userScores);
-    }, [userScores]);
+    }, [cid, currentUser, userScores]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <div id="wd-quizzes">

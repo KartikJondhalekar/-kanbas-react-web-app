@@ -97,7 +97,7 @@ export default function Dashboard() {
             }
         };
         fetchUserCourses();
-    }, [currentUser, dispatch]);
+    }, [currentUser]); // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleCourseSelection = (e: any) => {
         const course = unenrolledCourses.find((course: any) => course._id === e.target.value);

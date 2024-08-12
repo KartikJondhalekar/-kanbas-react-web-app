@@ -32,7 +32,7 @@ export default function Courses() {
             }
         };
         fetchCourseDetails();
-    }, [courses, cid, currentUser]);
+    }, [courses, cid, currentUser]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <div id="wd-courses">

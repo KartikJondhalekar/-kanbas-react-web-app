@@ -245,7 +245,8 @@ export default function Quiz() {
                 submitQuiz();
             }
         }
-    }, [startDate, startTime, questionIndex, quizzes, qid, isSubmitted, isFaculty, currentUser, responseResult]); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [startDate, startTime] // eslint-disable-line react-hooks/exhaustive-deps
+    );
 
     useEffect(() => {
         const qz = quizzes.find((quiz: any) => quiz._id === qid);

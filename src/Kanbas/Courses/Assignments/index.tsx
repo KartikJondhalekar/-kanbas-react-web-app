@@ -37,7 +37,7 @@ export default function Assignments() {
         };
 
         fetchAssignments();
-    }, [cid, dispatch]);
+    }, [cid]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <div id="wd-assignments" >

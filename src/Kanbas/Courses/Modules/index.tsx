@@ -57,7 +57,7 @@ export default function Modules() {
             }
         };
         fetchModules();
-    }, [cid, dispatch, currentUser.role]);
+    }, [cid, currentUser]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <div id="wd-modules">
