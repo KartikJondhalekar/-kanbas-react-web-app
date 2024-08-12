@@ -14,7 +14,6 @@ import QuizPreview from "./Quizzes/Preview";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import FacultyAccess from "./FacultyAccess";
-import { current } from "@reduxjs/toolkit";
 
 export default function Courses() {
     const { pathname } = useLocation();
