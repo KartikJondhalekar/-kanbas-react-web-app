@@ -9,7 +9,6 @@ export default function AssignmentControlButtons(
     assignmentTitle: string,
     deleteAssignment: (assignmentId: string) => void
   }) {
-  console.log(assignmentId)
   return (
     <div className="float-end d-flex align-items-center">
       <FaTrash className="text-danger fs-5 mx-2" data-bs-toggle="modal" data-bs-target={`#wd-delete-assignment-dialog-${assignmentId}`} />

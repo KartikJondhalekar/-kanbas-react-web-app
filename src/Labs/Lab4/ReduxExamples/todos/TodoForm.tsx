@@ -10,7 +10,7 @@
 //                 id="wd-add-todo-click" className="btn btn-success mx-1 float-end"> Add </button>
 //             <button onClick={() => updateTodo(todo)}
 //                 id="wd-update-todo-click" className="btn btn-warning mx-1 float-end"> Update </button>
-//             <input value={todo.title} className="form-control mx-1 float-start w-50"
+//             <input value={todo?.title} className="form-control mx-1 float-start w-50"
 //                 onChange={(e) => setTodo({ ...todo, title: e.target.value })} />
 //         </li>
 //     );
@@ -31,7 +31,7 @@ export default function TodoForm() {
             <button onClick={() => dispatch(updateTodo(todo))}
                 id="wd-update-todo-click" className="btn btn-warning mx-1 float-end"> Update </button>
             <input className="form-control mx-1 float-start w-50"
-                value={todo.title}
+                value={todo?.title}
                 onChange={(e) => dispatch(setTodo({ ...todo, title: e.target.value }))}
             />
         </li>

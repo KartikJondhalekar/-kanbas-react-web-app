@@ -9,14 +9,14 @@ export default function WorkingWithArraysAsynchronously() {
     const [errorMessage, setErrorMessage] = useState(null);
 
     const editTodo = (todo: any) => {
-        const updatedTodos = todos.map(
+        const updatedTodos = todos?.map(
             (t) => t.id === todo.id ? { ...todo, editing: true } : t);
         setTodos(updatedTodos);
     };
     const updateTodo = async (todo: any) => {
         try {
             await client.updateTodo(todo);
-            setTodos(todos.map((t) => (t.id === todo.id ? todo : t)));
+            setTodos(todos?.map((t) => (t.id === todo.id ? todo : t)));
         } catch (error: any) {
             setErrorMessage(error.response.data.message);
         }
@@ -70,7 +70,7 @@ export default function WorkingWithArraysAsynchronously() {
                 <FaPlusCircle onClick={postTodo} className="text-primary float-end fs-3 me-3" id="wd-post-todo" />
             </h4>
             <ul className="list-group">
-                {todos.map((todo) => (
+                {todos?.map((todo) => (
                     <li key={todo.id} className="list-group-item w-50">
                         <FaTrash onClick={() => removeTodo(todo)}
                             className="text-danger float-end mt-1" id="wd-remove-todo" />
@@ -78,8 +78,8 @@ export default function WorkingWithArraysAsynchronously() {
                         <FaPencil onClick={() => editTodo(todo)} className="text-primary float-end me-2 mt-1" />
                         <input type="checkbox" className="form-check-input me-2 float-start"
                             defaultChecked={todo.completed} onChange={(e) => updateTodo({ ...todo, completed: e.target.checked })} />
-                        {!todo.editing ? (todo.title) : (
-                            <input className="form-control w-50 float-start" defaultValue={todo.title}
+                        {!todo.editing ? (todo?.title) : (
+                            <input className="form-control w-50 float-start" defaultValue={todo?.title}
                                 onKeyDown={(e) => {
                                     if (e.key === "Enter") {
                                         updateTodo({ ...todo, editing: false });

@@ -35,11 +35,11 @@ export default function WorkingWithObjects() {
             <h4>Modifying Properties</h4>
             <a id="wd-update-assignment-title"
                 className="btn btn-primary float-end"
-                href={`${ASSIGNMENT_API_URL}/title/${assignment.title}`}>
+                href={`${ASSIGNMENT_API_URL}/title/${assignment?.title}`}>
                 Update Title
             </a>
             <input className="form-control w-75" id="wd-assignment-title"
-                value={assignment.title} onChange={(e) =>
+                value={assignment?.title} onChange={(e) =>
                     setAssignment({ ...assignment, title: e.target.value })} />
             <hr />
             <a id="wd-update-assignment-score" className="btn btn-primary float-end"

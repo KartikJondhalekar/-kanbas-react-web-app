@@ -22,3 +22,23 @@ export const updateCourse = async (course: any) => {
     const response = await axios.put(`${COURSES_API}/${course._id}`, course);
     return response.data;
 };
+
+export const fetchEnrolledCourses = async (uid: string) => {
+    const { data } = await axios.get(`${COURSES_API}/${uid}`);
+    return data;
+};
+
+export const fetchAuthoredCourses = async (authid: string) => {
+    const { data } = await axios.get(`${COURSES_API}/auth/${authid}`);
+    return data;
+};
+
+export const fetchUnenrolledCourses = async (uid: string) => {
+    const { data } = await axios.get(`${COURSES_API}/unenrolled/${uid}`);
+    return data;
+};
+
+export const enrollCourse = async (cid: string, uid: string) => {
+    const response = await axios.put(`${COURSES_API}/${cid}/enroll/${uid}`);
+    return response.data;
+}

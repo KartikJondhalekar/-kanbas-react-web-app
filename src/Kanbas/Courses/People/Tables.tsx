@@ -82,7 +82,7 @@ export default function PeopleTable() {
                     </tr>
                 </thead>
                 <tbody>
-                    {users.map((user: any) => (
+                    {users?.map((user: any) => (
                         <tr key={user._id}>
                             <td className="wd-full-name text-nowrap">
                                 <Link to={`/Kanbas/Courses/${cid}/People/${user._id}`} className="link-offset-2 link-underline link-underline-opacity-0">

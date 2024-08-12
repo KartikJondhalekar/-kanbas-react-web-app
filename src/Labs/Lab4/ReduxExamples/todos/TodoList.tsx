@@ -19,7 +19,7 @@
 //         setTodos(newTodos);
 //     };
 //     const updateTodo = (todo: any) => {
-//         const newTodos = todos.map((item) =>
+//         const newTodos = todos?.map((item) =>
 //             (item.id === todo.id ? todo : item));
 //         setTodos(newTodos);
 //         setTodo({ id: "-1", title: "" });
@@ -38,7 +38,7 @@
 //         //             <button onClick={() => updateTodo(todo)}
 //         //                 id="wd-update-todo-click" className="btn btn-warning mx-1 float-end">
 //         //                 Update </button>
-//         //             <input value={todo.title} className="form-control mx-1 float-start w-50"
+//         //             <input value={todo?.title} className="form-control mx-1 float-start w-50"
 //         //                 onChange={(e) =>
 //         //                     setTodo({
 //         //                         ...todo,
@@ -47,7 +47,7 @@
 //         //                 }
 //         //             />
 //         //         </li>
-//         //         {todos.map((todo) => (
+//         //         {todos?.map((todo) => (
 //         //             <li key={todo.id} className="list-group-item">
 //         //                 <button onClick={() => deleteTodo(todo.id)}
 //         //                     id="wd-delete-todo-click" className="btn btn-danger mx-1 float-end">
@@ -55,7 +55,7 @@
 //         //                 <button onClick={() => setTodo(todo)}
 //         //                     id="wd-set-todo-click" className="btn btn-primary mx-1 float-end">
 //         //                     Edit </button>
-//         //                 {todo.title}
+//         //                 {todo?.title}
 //         //             </li>
 //         //         ))}
 //         //     </ul>
@@ -72,7 +72,7 @@
 //                     setTodo={setTodo}
 //                     addTodo={addTodo}
 //                     updateTodo={updateTodo} />
-//                 {todos.map((todo) => (
+//                 {todos?.map((todo) => (
 //                     <TodoItem
 //                         todo={todo}
 //                         deleteTodo={deleteTodo}
@@ -96,7 +96,7 @@ export default function TodoList() {
                 <h2>Todo List</h2>
                 <ul className="list-group">
                     <TodoForm />
-                    {todos.map((todo: any) => (
+                    {todos?.map((todo: any) => (
                         <TodoItem todo={todo} />
                     ))}
                 </ul>

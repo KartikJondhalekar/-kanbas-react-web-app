@@ -40,11 +40,11 @@ export default function WorkingWithArrays() {
                 Delete Todo with ID = {todo.id} </a>
             <input value={todo.id} className="form-control w-50" onChange={(e) => setTodo({ ...todo, id: e.target.value })} /><hr />
             <h3>Updating an Item in an Array</h3>
-            <a href={`${API}/${todo.id}/title/${todo.title}`} className="btn btn-primary float-end">
+            <a href={`${API}/${todo.id}/title/${todo?.title}`} className="btn btn-primary float-end">
                 Update Todo</a>
             <input value={todo.id} className="form-control w-25 float-start me-2"
                 onChange={(e) => setTodo({ ...todo, id: e.target.value })} />
-            <input value={todo.title} className="form-control w-50 float-start"
+            <input value={todo?.title} className="form-control w-50 float-start"
                 onChange={(e) => setTodo({ ...todo, title: e.target.value })} />
             <br /><br /><hr />
             <a href={`${API}/${todo.id}/completed/${todo.completed}`} className="btn btn-primary float-end">

@@ -9,7 +9,7 @@
 //                 id="wd-delete-todo-click" className="btn btn-danger mx-1 float-end"> Delete </button>
 //             <button onClick={() => setTodo(todo)}
 //                 id="wd-set-todo-click" className="btn btn-primary mx-1 float-end"> Edit </button>
-//             {todo.title}
+//             {todo?.title}
 //         </li>
 //     );
 // }
@@ -27,7 +27,7 @@ export default function TodoItem({ todo }: { todo: { id: string; title: string }
                 id="wd-delete-todo-click" className="btn btn-danger mx-1 float-end"> Delete </button>
             <button onClick={() => dispatch(setTodo(todo))}
                 id="wd-set-todo-click" className="btn btn-primary mx-1 float-end"> Edit </button>
-            {todo.title}
+            {todo?.title}
         </li>
     );
 }

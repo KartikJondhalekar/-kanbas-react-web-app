@@ -48,18 +48,18 @@ export default function Grades() {
                     <thead>
                         <tr>
                             <th className="align-middle" style={{ minWidth: '200px' }}>Student Name</th>
-                            {assignments.map((assignment) => (
-                                <th className="align-middle text-center" style={{ minWidth: '200px' }}>{assignment.title}<br />Out of {assignment.points}</th>
+                            {assignments?.map((assignment) => (
+                                <th className="align-middle text-center" style={{ minWidth: '200px' }}>{assignment?.title}<br />Out of {assignment.points}</th>
                             ))}
                         </tr>
                     </thead>
                     <tbody>
-                        {enrollments.map((enrollment) => {
+                        {enrollments?.map((enrollment) => {
                             const user = users.find((user) => user._id === enrollment.user);
                             return (
                                 <tr>
                                     <td className="text-danger">{user?.firstName} {user?.lastName}</td>
-                                    {assignments.map((assignment) => {
+                                    {assignments?.map((assignment) => {
                                         const grade = grades.find((grade) =>
                                             grade.student === enrollment.user && grade.assignment === assignment.number);
                                         return (

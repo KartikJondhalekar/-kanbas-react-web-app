@@ -41,7 +41,6 @@ export default function AssignmentEditor() {
     }), [cid]);
 
     const saveAssignment = () => {
-        console.log(assignment)
         if (assignment !== undefined && assignment !== null) {
             if (assignments.filter((assignment: any) => assignment._id === aid).length === 0) {
                 createNewAssignment({ ...newAssignment, number: assignment.number + (assignments.length + 1) });

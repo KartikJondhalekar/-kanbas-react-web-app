@@ -23,7 +23,7 @@ const todosSlice = createSlice({
             state.todos = newTodos;
         },
         updateTodo: (state, action) => {
-            const newTodos = state.todos.map((item) =>
+            const newTodos = state.todos?.map((item) =>
                 item.id === action.payload.id ? action.payload : item
             );
             state.todos = newTodos;

@@ -7,12 +7,32 @@ import AssignmentEditor from "./Assignments/Editor";
 import { RxHamburgerMenu } from "react-icons/rx";
 import Grades from "./Grades";
 import PeopleTable from "./People/Tables";
+import Quizzes from "./Quizzes";
+import QuizEditor from "./Quizzes/Editor";
+import Quiz from "./Quizzes/Quiz";
+import QuizPreview from "./Quizzes/Preview";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import FacultyAccess from "./FacultyAccess";
 
-export default function Courses({ courses }: { courses: any[]; }) {
+export default function Courses() {
     const { pathname } = useLocation();
     const { cid } = useParams();
 
-    const course = courses.find((course) => course.number === cid);
+    const { courses } = useSelector((state: any) => state.coursesReducer);
+    const { currentUser } = useSelector((state: any) => state.accountReducer);
+    const [course, setCourse] = useState<any>();
+
+    const fetchCourseDetails = () => {
+        if (currentUser) {
+            const currentCourse = courses.find((course: any) => course.number === cid)
+            setCourse(currentCourse);
+        }
+    };
+
+    useEffect(() => {
+        fetchCourseDetails();
+    }, [courses, cid]);
 
     return (
         <div id="wd-courses">
@@ -20,7 +40,6 @@ export default function Courses({ courses }: { courses: any[]; }) {
                 <h2 className="text-danger">
                     <RxHamburgerMenu className="me-5 mb-1 fs-1" />
                     {course && course.name} <span className="text-black"> &gt; {pathname.split("/")[4]}</span>
-
                 </h2>
             </div>
             <hr />
@@ -36,8 +55,25 @@ export default function Courses({ courses }: { courses: any[]; }) {
                         <Route path="Piazza" element={<h1>Piazza</h1>} />
                         <Route path="Zoom" element={<h1>Zoom</h1>} />
                         <Route path="Assignments" element={<Assignments />} />
-                        <Route path="Assignments/:aid" element={<AssignmentEditor />} />
-                        <Route path="Quizzes" element={<h1>Quizzes</h1>} />
+                        <Route path="Assignments/:aid" element={
+                            <FacultyAccess>
+                                <AssignmentEditor />
+                            </FacultyAccess>
+                        } />
+                        <Route path="Quizzes" element={<Quizzes />} />
+                        <Route path="Quizzes/:qid" element={<Quiz />} />
+                        <Route path="Quizzes/:qid/Edit" element={
+                            <FacultyAccess>
+                                <QuizEditor />
+                            </FacultyAccess>} />
+                        <Route path="Quizzes/:qid/Preview" element={
+                            <FacultyAccess>
+                                <QuizPreview />
+                            </FacultyAccess>} />
+                        <Route path="Quizzes/NewQuiz" element={
+                            <FacultyAccess>
+                                <QuizEditor />
+                            </FacultyAccess>} />
                         <Route path="Grades" element={<Grades />} />
                         <Route path="People" element={<PeopleTable />} />
                         <Route path="People/:uid" element={<PeopleTable />} />

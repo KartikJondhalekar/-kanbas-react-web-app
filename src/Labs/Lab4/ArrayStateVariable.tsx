@@ -12,7 +12,7 @@ export default function ArrayStateVariable() {
             <h2>Array State Variable</h2>
             <button onClick={addElement} className="btn btn-success mb-2">Add Element</button>
             <ul className="list-group w-25">
-                {array.map((item, index) => (
+                {array?.map((item, index) => (
                     <li key={index} className="list-group-item">
                         {item}
                         <button className="btn btn-danger float-end" onClick={() => deleteElement(index)}

@@ -10,14 +10,23 @@ import LessonControlButtons from "./LessonControlButtons";
 
 export default function Modules() {
     const { cid } = useParams();
-    const [newModule, setNewModule] = useState<any>({ name: "", description: "" });
-    const { modules } = useSelector((state: any) => state.modulesReducer);
-    const [moduleError, setModuleError] = useState(null);
     const dispatch = useDispatch();
 
+    const { currentUser } = useSelector((state: any) => state.accountReducer);
+    const [isFaculty, setIsFaculty] = useState(false);
+    const { modules } = useSelector((state: any) => state.modulesReducer);
+    const [moduleError, setModuleError] = useState(null);
+    const [newModule, setNewModule] = useState<any>({ name: "", description: "" });
+
+
     const saveModule = async (module: any) => {
-        await client.updateModule(module);
-        dispatch(updateModule(module));
+        try {
+            await client.updateModule(module);
+            dispatch(updateModule(module));
+        }
+        catch (error: any) {
+            setModuleError(error.response.data.message);
+        }
     };
 
     const updateModuleTitle = (module: any) => {
@@ -30,7 +39,6 @@ export default function Modules() {
             dispatch(deleteModule(moduleId));
         }
         catch (error: any) {
-            console.log(error)
             setModuleError(error.response.data.message);
         }
     };
@@ -40,32 +48,40 @@ export default function Modules() {
         dispatch(addModule(newModule));
     };
 
+    const fetchModules = async () => {
+        const modules = await client.findModulesForCourse(cid as string);
+        dispatch(setModules(modules));
+        if (currentUser.role === "FACULTY") {
+            setIsFaculty(true);
+        }
+    };
+
     useEffect(() => {
-        const fetchModules = async () => {
-            const modules = await client.findModulesForCourse(cid as string);
-            dispatch(setModules(modules));
-        };
         fetchModules();
     }, [cid, dispatch]);
 
     return (
         <div id="wd-modules">
-            <ModulesControls
-                setNewModule={setNewModule}
-                newModule={newModule}
-                addModule={() => {
-                    createModule({ ...newModule, course: cid });
-                    setNewModule({ ...newModule, name: "", description: "" });
-                }}
-            />
-            < br /><br /><br /><br /><br /><br />
+            {isFaculty &&
+                <>
+                    <ModulesControls
+                        setNewModule={setNewModule}
+                        newModule={newModule}
+                        addModule={() => {
+                            createModule({ ...newModule, course: cid });
+                            setNewModule({ ...newModule, name: "", description: "" });
+                        }}
+                    />
+                    < br /><br /><br /><br /><br /><br />
+                </>
+            }
             {moduleError &&
                 <div id="wd-error-message" className="alert alert-danger mb-2 mt-2">{moduleError}</div>
             }
             <ul id="wd-modules" className="list-group rounded-0 pt-3">
                 {modules
                     .filter((module: any) => module.course === cid)
-                    .map((module: any) => (
+                    ?.map((module: any) => (
                         <li className="wd-module list-group-item p-0 mb-5 fs-5 border-gray">
                             <div className="wd-title p-3 ps-2 bg-secondary">
                                 <BsGripVertical className="me-2 fs-3" />
@@ -81,22 +97,25 @@ export default function Modules() {
                                         }}
                                         value={module.name} />
                                 )}
-                                <ModuleControlButtons
-                                    moduleId={module._id}
-                                    deleteModule={(moduleId) => {
-                                        removeModule(moduleId);
-                                    }}
-                                    editModule={(moduleId) => dispatch(editModule(moduleId))}
-
-                                />
+                                {isFaculty &&
+                                    <ModuleControlButtons
+                                        moduleId={module._id}
+                                        deleteModule={(moduleId) => {
+                                            removeModule(moduleId);
+                                        }}
+                                        editModule={(moduleId) => dispatch(editModule(moduleId))}
+                                    />
+                                }
                             </div>
                             {module.lessons && (
                                 <ul className="list-group rounded-0 border-start border-3 border-success">
-                                    {module.lessons.map((lesson: any) => (
+                                    {module.lessons?.map((lesson: any) => (
                                         <li className="wd-lesson list-group-item p-3 ps-1">
                                             <BsGripVertical className="me-2 fs-3" />
                                             {lesson.name}
-                                            <LessonControlButtons />
+                                            {isFaculty &&
+                                                <LessonControlButtons />
+                                            }
                                         </li>
                                     ))}
                                 </ul>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as client from "./client";
 import { setCurrentUser } from "./reducer";
@@ -32,6 +32,10 @@ export default function Signup() {
                             id="wd-username" className="form-control mb-2" placeholder="username" />
                         <input value={user.password} onChange={(e) => setUser({ ...user, password: e.target.value })} type="password"
                             id="wd-password" className="form-control mb-2" placeholder="password" />
+                        <select value={user.role} onChange={(e) => setUser({ ...user, role: e.target.value })} id="wd-role" className="form-select mb-2">
+                            <option value="FACULTY">Faculty</option>
+                            <option value="STUDENT" selected>Student</option>
+                        </select>
                         <button onClick={signup} id="wd-signup-btn" className="btn btn-danger w-100 mb-2"> Sign up </button><br />
                         <Link to="/Kanbas/Account/Signin" id="wd-signin-link">Sign in</Link>
                     </div>
