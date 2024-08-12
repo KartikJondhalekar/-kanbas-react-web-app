@@ -32,7 +32,7 @@ export default function Courses() {
 
     useEffect(() => {
         fetchCourseDetails();
-    }, [courses, cid]);
+    }, [courses, cid, fetchCourseDetails]);
 
     return (
         <div id="wd-courses">

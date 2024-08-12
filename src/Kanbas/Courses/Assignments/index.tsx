@@ -17,7 +17,7 @@ export default function Assignments() {
     const [assignmentError, setAssignmentError] = useState(null);
     const { assignments } = useSelector((state: any) => state.assignmentsReducer);
     const { currentUser } = useSelector((state: any) => state.accountReducer);
-    const [isFaculty, setIsFaculty] = useState(currentUser?.role === "FACULTY");
+    const [isFaculty] = useState(currentUser?.role === "FACULTY");
     const dispatch = useDispatch();
 
     const removeAssignment = async (assignmentId: string) => {
@@ -30,14 +30,14 @@ export default function Assignments() {
         }
     }
 
-    const fetchAssignments = async () => {
-        const assignments = await client.findAssignmentsForCourse(cid as string);
-        dispatch(setAssignments(assignments));
-    };
-
     useEffect(() => {
+        const fetchAssignments = async () => {
+            const assignments = await client.findAssignmentsForCourse(cid as string);
+            dispatch(setAssignments(assignments));
+        };
+
         fetchAssignments();
-    }, [cid]);
+    }, [cid, dispatch]);
 
     return (
         <div id="wd-assignments" >

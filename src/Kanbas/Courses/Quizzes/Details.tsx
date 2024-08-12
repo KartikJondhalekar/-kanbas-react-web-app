@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import * as client from "./client";
 import { addQuiz, updateQuiz } from "./reducer";
-import CustomEditor from "../../Utilities/CustomEditor";
 
 export default function QuizDetails(
     { quiz, setQuiz }: { quiz: any, setQuiz: (qz: any) => void }

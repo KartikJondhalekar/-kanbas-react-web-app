@@ -245,13 +245,14 @@ export default function Quiz() {
                 submitQuiz();
             }
         }
-    }, [startDate, startTime]);
+    }, [startDate, startTime, questionIndex, quizzes, qid, isSubmitted,
+        submitQuiz, getPrevResponse, getStartDateTime, isFaculty, currentUser, responseResult]);
 
     useEffect(() => {
         const qz = quizzes.find((quiz: any) => quiz._id === qid);
         getPrevResponse(qz);
     }
-        , [prevResponse]
+        , [prevResponse, quizzes, qid, getPrevResponse]
     );
 
     return (

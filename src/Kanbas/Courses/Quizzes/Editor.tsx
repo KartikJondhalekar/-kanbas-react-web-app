@@ -5,13 +5,11 @@ import { HiDotsVertical } from "react-icons/hi";
 import { useLocation, useParams } from "react-router";
 import QuizDetails from "./Details";
 import QuizQuestions from "./Questions";
-import { useDispatch, useSelector } from "react-redux";
-import { updateQuiz } from "./reducer";
+import { useSelector } from "react-redux";
 
 export default function QuizEditor() {
     const { cid, qid } = useParams();
     const { pathname } = useLocation();
-    const dispatch = useDispatch();
 
     const { quizzes } = useSelector((state: any) => state.quizzesReducer);
     const [quiz, setQuiz] = useState<any>(quizzes.find((quiz: any) => quiz._id === qid));

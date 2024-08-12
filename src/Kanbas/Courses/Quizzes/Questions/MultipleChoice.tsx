@@ -1,4 +1,3 @@
-import { set } from "date-fns";
 import { useState } from "react";
 import { FaTrash } from "react-icons/fa";
 import { useSelector } from "react-redux";
@@ -62,13 +61,6 @@ export default function MultipleChoice(
             setQuestionsCopy(qts);
             setSavedQuestions(qts);
         }
-        const qts = savedQuestions?.map((q: any) => {
-            if (q.number === question.number) {
-                return { ...question, editable: false, isSaved: true };
-            } else {
-                return q;
-            }
-        });
         setQuiz({ ...quiz, points: parseInt(quiz.points) + parseInt(question.points) });
     };
 

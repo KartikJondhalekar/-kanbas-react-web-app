@@ -48,15 +48,14 @@ export default function Modules() {
         dispatch(addModule(newModule));
     };
 
-    const fetchModules = async () => {
-        const modules = await client.findModulesForCourse(cid as string);
-        dispatch(setModules(modules));
-        if (currentUser.role === "FACULTY") {
-            setIsFaculty(true);
-        }
-    };
-
     useEffect(() => {
+        const fetchModules = async () => {
+            const modules = await client.findModulesForCourse(cid as string);
+            dispatch(setModules(modules));
+            if (currentUser.role === "FACULTY") {
+                setIsFaculty(true);
+            }
+        };
         fetchModules();
     }, [cid, dispatch]);
 

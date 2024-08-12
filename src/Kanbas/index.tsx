@@ -3,11 +3,8 @@ import KanbasNavigation from "./Navigation";
 import { Routes, Route, Navigate } from "react-router";
 import Courses from "./Courses";
 import "./style.css";
-import * as client from "./Courses/client";
 import store from "./store";
 import { Provider } from "react-redux";
-
-import { useEffect, useState } from "react";
 import Account from "./Account";
 import ProtectedRoute from "./ProtectedRoute";
 import Session from "./Account/Session";

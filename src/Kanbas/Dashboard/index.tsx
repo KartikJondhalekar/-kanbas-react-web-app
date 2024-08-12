@@ -26,10 +26,6 @@ export default function Dashboard() {
         author: ""
     });
 
-    useEffect(() => {
-        fetchUserCourses();
-    }, []);
-
     const addNewCourse = async () => {
         try {
             const newCourse = await client.createCourse({ ...course, number: course?.number + currentUser._id + courses?.length + new Date().getTime(), author: currentUser._id });
@@ -99,6 +95,11 @@ export default function Dashboard() {
         }
     };
 
+
+    useEffect(() => {
+        fetchUserCourses();
+    }, [fetchUserCourses]);
+
     const handleCourseSelection = (e: any) => {
         const course = unenrolledCourses.find((course: any) => course._id === e.target.value);
         setSelectedCourse(course);
@@ -134,7 +135,7 @@ export default function Dashboard() {
                 <>
                     {!newEnrollment ? (
                         <div id="wd-enroll-course">
-                            <button className="btn btn-danger" role="button" onClick={() => { setNewEnrollment(true); fetchUnenrolledCourses(); }}>Click here to enroll in a new course</button>
+                            <button className="btn btn-danger" onClick={() => { setNewEnrollment(true); fetchUnenrolledCourses(); }}>Click here to enroll in a new course</button>
                             {error && <div className="alert alert-danger m-2">{error}</div>}
                         </div>
                     ) : (
@@ -145,8 +146,8 @@ export default function Dashboard() {
                                     <option key={course._id} value={course._id}>{course.name}</option>
                                 ))}
                             </select>
-                            <button className="btn btn-primary me-1" role="button" disabled={!selectedCourse} onClick={() => setNewEnrollment(false)} data-bs-toggle="modal" data-bs-target={`#wd-enroll-course-dialog-${selectedCourse?._id}`}>Enroll</button>
-                            <button className="btn btn-danger" role="button" onClick={() => setNewEnrollment(false)}>Cancel</button>
+                            <button className="btn btn-primary me-1" disabled={!selectedCourse} onClick={() => setNewEnrollment(false)} data-bs-toggle="modal" data-bs-target={`#wd-enroll-course-dialog-${selectedCourse?._id}`}>Enroll</button>
+                            <button className="btn btn-danger" onClick={() => setNewEnrollment(false)}>Cancel</button>
                         </div>
                     )}
                 </>

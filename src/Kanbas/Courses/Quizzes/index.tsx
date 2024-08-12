@@ -16,7 +16,7 @@ export default function Quizzes() {
     const [quizError, setQuizError] = useState("");
     const { quizzes } = useSelector((state: any) => state.quizzesReducer);
     const { currentUser } = useSelector((state: any) => state.accountReducer);
-    const [isFaculty, setIsFaculty] = useState(currentUser?.role === "FACULTY");
+    const [isFaculty] = useState(currentUser?.role === "FACULTY");
     const [userScores, setUserScores] = useState<any[]>([]);
 
     const getDayOfYear = (date: Date): number => {
@@ -102,7 +102,7 @@ export default function Quizzes() {
             console.log(scores, userScores);
         };
         fetchQuizzes();
-    }, []);
+    }, [cid, dispatch, currentUser._id, userScores]);
 
     useEffect(() => {
         console.log('Updated userScores:', userScores);
