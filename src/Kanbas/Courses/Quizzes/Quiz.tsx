@@ -245,13 +245,13 @@ export default function Quiz() {
                 submitQuiz();
             }
         }
-    }, [startDate, startTime, questionIndex, quizzes, qid, isSubmitted, isFaculty, currentUser, responseResult]);
+    }, [startDate, startTime, questionIndex, quizzes, qid, isSubmitted, isFaculty, currentUser, responseResult]); // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         const qz = quizzes.find((quiz: any) => quiz._id === qid);
         getPrevResponse(qz);
     }
-        , [prevResponse, quizzes, qid]
+        , [prevResponse, quizzes, qid] // eslint-disable-line react-hooks/exhaustive-deps
     );
 
     return (
