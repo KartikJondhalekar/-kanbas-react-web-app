@@ -56,19 +56,6 @@ export default function Dashboard() {
         }
     };
 
-    const fetchUserCourses = async () => {
-        if (currentUser) {
-            if (currentUser.role === "FACULTY") {
-                const authoredCourses = await client.fetchAuthoredCourses(currentUser._id);
-                dispatch(setCourses(authoredCourses));
-            } else {
-                const enrolledCourses = await client.fetchEnrolledCourses(currentUser._id);
-                dispatch(setCourses(enrolledCourses));
-            }
-            setIsFaculty(currentUser.role === "FACULTY");
-        }
-    };
-
     const fetchUnenrolledCourses = async () => {
         try {
             const unenrolledCourses = await client.fetchUnenrolledCourses(currentUser._id);
@@ -97,8 +84,20 @@ export default function Dashboard() {
 
 
     useEffect(() => {
+        const fetchUserCourses = async () => {
+            if (currentUser) {
+                if (currentUser.role === "FACULTY") {
+                    const authoredCourses = await client.fetchAuthoredCourses(currentUser._id);
+                    dispatch(setCourses(authoredCourses));
+                } else {
+                    const enrolledCourses = await client.fetchEnrolledCourses(currentUser._id);
+                    dispatch(setCourses(enrolledCourses));
+                }
+                setIsFaculty(currentUser.role === "FACULTY");
+            }
+        };
         fetchUserCourses();
-    }, [fetchUserCourses]);
+    }, [currentUser, dispatch]);
 
     const handleCourseSelection = (e: any) => {
         const course = unenrolledCourses.find((course: any) => course._id === e.target.value);

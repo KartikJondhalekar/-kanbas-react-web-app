@@ -23,16 +23,16 @@ export default function Courses() {
     const { currentUser } = useSelector((state: any) => state.accountReducer);
     const [course, setCourse] = useState<any>();
 
-    const fetchCourseDetails = () => {
-        if (currentUser) {
-            const currentCourse = courses.find((course: any) => course.number === cid)
-            setCourse(currentCourse);
-        }
-    };
 
     useEffect(() => {
+        const fetchCourseDetails = () => {
+            if (currentUser) {
+                const currentCourse = courses.find((course: any) => course.number === cid)
+                setCourse(currentCourse);
+            }
+        };
         fetchCourseDetails();
-    }, [courses, cid, fetchCourseDetails]);
+    }, [courses, cid]);
 
     return (
         <div id="wd-courses">

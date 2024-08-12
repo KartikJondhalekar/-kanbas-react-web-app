@@ -57,7 +57,7 @@ export default function Modules() {
             }
         };
         fetchModules();
-    }, [cid, dispatch]);
+    }, [cid, dispatch, currentUser.role]);
 
     return (
         <div id="wd-modules">
